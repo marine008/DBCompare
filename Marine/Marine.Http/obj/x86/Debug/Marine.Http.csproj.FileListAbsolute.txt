@@ -1,0 +1,5 @@
+E:\zhd\MyProject\Marine\Marine.Http\bin\Debug\Marine.Http.dll
+E:\zhd\MyProject\Marine\Marine.Http\bin\Debug\Marine.Http.pdb
+E:\zhd\MyProject\Marine\Marine.Http\obj\x86\Debug\ResolveAssemblyReference.cache
+E:\zhd\MyProject\Marine\Marine.Http\obj\x86\Debug\Marine.Http.dll
+E:\zhd\MyProject\Marine\Marine.Http\obj\x86\Debug\Marine.Http.pdb

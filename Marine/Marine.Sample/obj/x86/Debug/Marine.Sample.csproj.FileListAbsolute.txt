@@ -1,0 +1,14 @@
+E:\zhd\MyProject\Marine\Marine.Sample\bin\Debug\Marine.Sample.exe
+E:\zhd\MyProject\Marine\Marine.Sample\bin\Debug\Marine.Sample.pdb
+E:\zhd\MyProject\Marine\Marine.Sample\bin\Debug\Marine.Database.dll
+E:\zhd\MyProject\Marine\Marine.Sample\bin\Debug\Marine.Database.pdb
+E:\zhd\MyProject\Marine\Marine.Sample\obj\x86\Debug\ResolveAssemblyReference.cache
+E:\zhd\MyProject\Marine\Marine.Sample\obj\x86\Debug\Marine.Sample.Form1.resources
+E:\zhd\MyProject\Marine\Marine.Sample\obj\x86\Debug\Marine.Sample.Properties.Resources.resources
+E:\zhd\MyProject\Marine\Marine.Sample\obj\x86\Debug\GenerateResource.read.1.tlog
+E:\zhd\MyProject\Marine\Marine.Sample\obj\x86\Debug\GenerateResource.write.1.tlog
+E:\zhd\MyProject\Marine\Marine.Sample\obj\x86\Debug\Marine.Sample.exe
+E:\zhd\MyProject\Marine\Marine.Sample\obj\x86\Debug\Marine.Sample.pdb
+E:\zhd\MyProject\Marine\Marine.Sample\obj\x86\Debug\Marine.Sample.AddForm.resources
+E:\zhd\MyProject\Marine\Marine.Sample\obj\x86\Debug\Marine.Sample.Form2.resources
+E:\zhd\MyProject\Marine\Marine.Sample\obj\x86\Debug\Marine.Sample.CompareForm.resources

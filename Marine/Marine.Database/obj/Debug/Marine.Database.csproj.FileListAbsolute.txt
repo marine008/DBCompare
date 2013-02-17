@@ -1,0 +1,5 @@
+E:\zhd\MyProject\Marine\Marine.Database\bin\Debug\Marine.Database.dll
+E:\zhd\MyProject\Marine\Marine.Database\bin\Debug\Marine.Database.pdb
+E:\zhd\MyProject\Marine\Marine.Database\obj\Debug\ResolveAssemblyReference.cache
+E:\zhd\MyProject\Marine\Marine.Database\obj\Debug\Marine.Database.dll
+E:\zhd\MyProject\Marine\Marine.Database\obj\Debug\Marine.Database.pdb
