@@ -36,15 +36,16 @@ namespace Marine.Sample
 
         private void FilingTabPage(List<string> values, string tabName, TabControl targetTabControl)
         {
-            ListBox listControl = new ListBox();
-            listControl.Dock = DockStyle.Fill;
+            ListView listViewControl = new ListView();
+            listViewControl.View = View.Details;
+            listViewControl.Dock = DockStyle.Fill;
             foreach (string value in values)
             {
-                listControl.Items.Add(value);
+                listViewControl.Items.Add(value);
             }
 
             TabPage tabPage = new TabPage(tabName);
-            tabPage.Controls.Add(listControl);
+            tabPage.Controls.Add(listViewControl);
 
             targetTabControl.TabPages.Add(tabPage);
         }
@@ -69,6 +70,29 @@ namespace Marine.Sample
             tabPage.Controls.Add(listViewControl);
 
             targetTabControl.TabPages.Add(tabPage);
+        }
+
+        public void SetItemColor(string tabPageTitle, string itemString)
+        {
+            foreach (TabPage tbPage in this.tabDBInfo.TabPages)
+            {
+                if (tbPage.Text == tabPageTitle)
+                {
+                    Control pageControl = this.tabDBInfo.TabPages[tabPageTitle].Controls[0];
+                    if (pageControl is ListView)
+                    {
+                        foreach (ListViewItem item in (pageControl as ListView).Items)
+                        {
+                            if (item.Text == itemString)
+                            {
+                                item.BackColor = Color.Maroon;
+                                break;
+                            }
+                        }
+                    }
+                    break;
+                }
+            }
         }
     }
 }

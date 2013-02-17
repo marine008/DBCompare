@@ -12,3 +12,5 @@ E:\zhd\MyProject\Marine\Marine.Sample\obj\x86\Debug\Marine.Sample.pdb
 E:\zhd\MyProject\Marine\Marine.Sample\obj\x86\Debug\Marine.Sample.AddForm.resources
 E:\zhd\MyProject\Marine\Marine.Sample\obj\x86\Debug\Marine.Sample.Form2.resources
 E:\zhd\MyProject\Marine\Marine.Sample\obj\x86\Debug\Marine.Sample.CompareForm.resources
+C:\Users\zhd\Documents\GitHub\DBCompare\Marine\Marine.Sample\obj\x86\Debug\Marine.Sample.exe
+C:\Users\zhd\Documents\GitHub\DBCompare\Marine\Marine.Sample\obj\x86\Debug\Marine.Sample.pdb

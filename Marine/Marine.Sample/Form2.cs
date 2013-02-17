@@ -51,7 +51,11 @@ namespace Marine.Sample
 
         private void tsBtnCompare_Click(object sender, EventArgs e)
         {
+            //在对比窗口内部进行对比
+            for (int i = 0; i < this.MdiChildren.Length; i++)
+            {
 
+            }
         }
     }
 }
