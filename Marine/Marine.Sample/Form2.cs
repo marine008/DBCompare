@@ -52,9 +52,45 @@ namespace Marine.Sample
         private void tsBtnCompare_Click(object sender, EventArgs e)
         {
             //在对比窗口内部进行对比
-            for (int i = 0; i < this.MdiChildren.Length; i++)
+            if (this.MdiChildren.Length > 1)
             {
+                if (this.MdiChildren[0] is CompareForm && this.MdiChildren[1] is CompareForm)
+                {
+                    CompareForm compareForm1 = this.MdiChildren[0] as CompareForm;
+                    CompareForm compareForm2 = this.MdiChildren[1] as CompareForm;
 
+                    Dictionary<string, Dictionary<string, List<string>>> compareResutl = compareForm1.Compare(compareForm2);
+                    foreach (string compareType in compareResutl.Keys)
+                    {
+                        Dictionary<string, List<string>> typeResult = compareResutl[compareType];
+                        foreach (string resultType in typeResult.Keys)
+                        {
+                            for (int i = 0; i < this.MdiChildren.Length; i++)
+                            {
+                                if (this.MdiChildren[i].Text == resultType)
+                                {
+                                    foreach (string value in typeResult[resultType])
+                                    {
+                                        if (this.MdiChildren[i] is CompareForm)
+                                            (this.MdiChildren[i] as CompareForm).SetItemColor(compareType, value);
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+            else
+            {
+                MessageBox.Show("窗体少于2个");
+            }
+        }
+
+        private void tsBtnGenerate_Click(object sender, EventArgs e)
+        {
+            if (this.ActiveMdiChild != null && this.ActiveMdiChild is CompareForm)
+            {
+                
             }
         }
     }
