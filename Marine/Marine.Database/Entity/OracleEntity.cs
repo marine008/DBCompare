@@ -30,22 +30,6 @@ namespace Marine.Database.Entity
             return FillResult(cmd, "username");
         }
 
-        private List<string> FillResult(string cmd, string columnName)
-        {
-            List<string> dbUser = new List<string>();
-            DataTable dataTable = new DataTable();
-            _dbExcuter.Fill(cmd, ref dataTable);
-            if (dataTable != null && dataTable.Rows.Count > 0)
-            {
-                foreach (DataRow dtRow in dataTable.Rows)
-                {
-                    dbUser.Add(dtRow[columnName].ToString());
-                }
-            }
-
-            return dbUser;
-        }
-
         public List<string> GetDBTables()
         {
             string cmd = "select table_name from user_tables";
@@ -127,6 +111,43 @@ namespace Marine.Database.Entity
         {
             string cmd = "select granted_role from user_role_privs";
             return FillResult(cmd, "granted_role");
+        }
+
+        public string GeneratePrivsSQL(string privsType, string userName)
+        {
+            return string.Format("grant {0} to {1};", privsType, userName);
+        }
+
+        public string GenerateRoleSQL(string roleType, string userName)
+        {
+            return string.Format("grant {0} to {1};", roleType, userName);
+        }
+
+        public string GenerateTableSpace(string spaceName)
+        {
+            return string.Format("create tablespace {0}  " +
+                                            "logging  " +
+                                            "datafile 'D:\\oracle\\oradata\\Oracle9i\\user_data.dbf' " +
+                                            "size 50m  " +
+                                            "autoextend on  " +
+                                            "next 50m maxsize 20480m  " +
+                                            "extent management local;  ", spaceName);
+        }
+
+        private List<string> FillResult(string cmd, string columnName)
+        {
+            List<string> dbUser = new List<string>();
+            DataTable dataTable = new DataTable();
+            _dbExcuter.Fill(cmd, ref dataTable);
+            if (dataTable != null && dataTable.Rows.Count > 0)
+            {
+                foreach (DataRow dtRow in dataTable.Rows)
+                {
+                    dbUser.Add(dtRow[columnName].ToString());
+                }
+            }
+
+            return dbUser;
         }
     }
 

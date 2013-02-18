@@ -36,6 +36,7 @@
             this.tsBtnCascade = new System.Windows.Forms.ToolStripButton();
             this.tsBtnTileHorizontal = new System.Windows.Forms.ToolStripButton();
             this.tsBtnTileVertical = new System.Windows.Forms.ToolStripButton();
+            this.tsBtnGenerate = new System.Windows.Forms.ToolStripButton();
             this.toolStrip1.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -44,6 +45,7 @@
             this.toolStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.tsBtnAdd,
             this.tsBtnCompare,
+            this.tsBtnGenerate,
             this.tsBtnArrangeIcons,
             this.tsBtnCascade,
             this.tsBtnTileHorizontal,
@@ -114,6 +116,16 @@
             this.tsBtnTileVertical.Text = "TileVertical";
             this.tsBtnTileVertical.Click += new System.EventHandler(this.tsBtnTileVertical_Click);
             // 
+            // tsBtnGenerate
+            // 
+            this.tsBtnGenerate.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Text;
+            this.tsBtnGenerate.Image = ((System.Drawing.Image)(resources.GetObject("tsBtnGenerate.Image")));
+            this.tsBtnGenerate.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.tsBtnGenerate.Name = "tsBtnGenerate";
+            this.tsBtnGenerate.Size = new System.Drawing.Size(65, 22);
+            this.tsBtnGenerate.Text = "Generate";
+            this.tsBtnGenerate.Click += new System.EventHandler(this.tsBtnGenerate_Click);
+            // 
             // Form2
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
@@ -139,5 +151,6 @@
         private System.Windows.Forms.ToolStripButton tsBtnCascade;
         private System.Windows.Forms.ToolStripButton tsBtnTileHorizontal;
         private System.Windows.Forms.ToolStripButton tsBtnTileVertical;
+        private System.Windows.Forms.ToolStripButton tsBtnGenerate;
     }
 }
