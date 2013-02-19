@@ -57,6 +57,12 @@ namespace Marine.Database
             }
         }
 
+        public DbTransaction GetCurrentTransaction()
+        {
+            DbTransaction dbTransaction = dbCnx.BeginTransaction();
+            return dbTransaction;
+        }
+
         /// <summary>
         /// 验证数据库连接
         /// </summary>
@@ -105,23 +111,15 @@ namespace Marine.Database
         }
 
         /// <summary>
-        /// 打开数据库连接
-        /// </summary>
-        private void SetCnxOpen()
-        {
-            if (dbCnx == null)
-                throw new Exception("数据库连接不可用");
-
-            if (dbCnx.State != ConnectionState.Open)
-                dbCnx.Open();
-        }
-
-        /// <summary>
         /// 对连接对象执行 SQL 语句
         /// </summary>
         /// <param name="cmdText">SQL语句</param>
         /// <returns></returns>
         public int ExecuteNonQuery(string cmdText)
+        {
+            return ExecuteNonQuery(cmdText, null);
+        }
+        public int ExecuteNonQuery(string cmdText, DbTransaction transaction)
         {
             int queryNum = -1;
 
@@ -130,6 +128,8 @@ namespace Marine.Database
                 SetCnxOpen();
 
                 dbCmd.CommandText = cmdText;
+                if (transaction != null)
+                    dbCmd.Transaction = transaction;
                 queryNum = dbCmd.ExecuteNonQuery();
             }
             catch (DbException err)
@@ -149,6 +149,10 @@ namespace Marine.Database
         /// <returns></returns>
         public object ExecuteScalar(string cmdText)
         {
+            return ExecuteScalar(cmdText, null);
+        }
+        public object ExecuteScalar(string cmdText, DbTransaction transaction)
+        {
             object queryResult = null;
 
             try
@@ -156,6 +160,8 @@ namespace Marine.Database
                 SetCnxOpen();
 
                 dbCmd.CommandText = cmdText;
+                if (transaction != null)
+                    dbCmd.Transaction = transaction;
                 queryResult = dbCmd.ExecuteScalar();
             }
             catch (DbException err)
@@ -175,11 +181,17 @@ namespace Marine.Database
         /// <returns></returns>
         public int Fill(string cmdText, ref DataTable dataTable)
         {
+            return Fill(cmdText, null, ref dataTable);
+        }
+        public int Fill(string cmdText, DbTransaction transaction, ref DataTable dataTable)
+        {
             int queryNum = -1;
 
             try
             {
                 dbCmd.CommandText = cmdText;
+                if (transaction != null)
+                    dbCmd.Transaction = transaction;
                 dbAdapter.SelectCommand = dbCmd;
                 queryNum = dbAdapter.Fill(dataTable);
             }
@@ -192,13 +204,22 @@ namespace Marine.Database
             return queryNum;
         }
 
-        public int Update(string cmdText, DataTable dataTable)
+        /// <summary>
+        /// 尚未完成
+        /// </summary>
+        /// <param name="cmdText"></param>
+        /// <param name="transaction"></param>
+        /// <param name="dataTable"></param>
+        /// <returns></returns>
+        public int Update(string cmdText, DbTransaction transaction, DataTable dataTable)
         {
             int updateNum = -1;
 
             try
             {
                 dbCmd.CommandText = cmdText;
+                if (transaction != null)
+                    dbCmd.Transaction = transaction;
                 dbAdapter.SelectCommand = dbCmd;
                 DbCommandBuilder dbCmdBuilder = ReturnCmdBuilder(dbAdapter);
 
@@ -221,6 +242,18 @@ namespace Marine.Database
         private DbCommandBuilder ReturnCmdBuilder(DbDataAdapter adapter)
         {
             return null;
+        }
+
+        /// <summary>
+        /// 打开数据库连接
+        /// </summary>
+        private void SetCnxOpen()
+        {
+            if (dbCnx == null)
+                throw new Exception("数据库连接不可用");
+
+            if (dbCnx.State != ConnectionState.Open)
+                dbCnx.Open();
         }
     }
 }
