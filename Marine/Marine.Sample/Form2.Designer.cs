@@ -32,11 +32,11 @@
             this.toolStrip1 = new System.Windows.Forms.ToolStrip();
             this.tsBtnAdd = new System.Windows.Forms.ToolStripButton();
             this.tsBtnCompare = new System.Windows.Forms.ToolStripButton();
+            this.tsBtnGenerate = new System.Windows.Forms.ToolStripButton();
             this.tsBtnArrangeIcons = new System.Windows.Forms.ToolStripButton();
             this.tsBtnCascade = new System.Windows.Forms.ToolStripButton();
             this.tsBtnTileHorizontal = new System.Windows.Forms.ToolStripButton();
             this.tsBtnTileVertical = new System.Windows.Forms.ToolStripButton();
-            this.tsBtnGenerate = new System.Windows.Forms.ToolStripButton();
             this.toolStrip1.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -75,6 +75,16 @@
             this.tsBtnCompare.Size = new System.Drawing.Size(66, 22);
             this.tsBtnCompare.Text = "Compare";
             this.tsBtnCompare.Click += new System.EventHandler(this.tsBtnCompare_Click);
+            // 
+            // tsBtnGenerate
+            // 
+            this.tsBtnGenerate.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Text;
+            this.tsBtnGenerate.Image = ((System.Drawing.Image)(resources.GetObject("tsBtnGenerate.Image")));
+            this.tsBtnGenerate.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.tsBtnGenerate.Name = "tsBtnGenerate";
+            this.tsBtnGenerate.Size = new System.Drawing.Size(65, 22);
+            this.tsBtnGenerate.Text = "Generate";
+            this.tsBtnGenerate.Click += new System.EventHandler(this.tsBtnGenerate_Click);
             // 
             // tsBtnArrangeIcons
             // 
@@ -115,16 +125,6 @@
             this.tsBtnTileVertical.Size = new System.Drawing.Size(75, 22);
             this.tsBtnTileVertical.Text = "TileVertical";
             this.tsBtnTileVertical.Click += new System.EventHandler(this.tsBtnTileVertical_Click);
-            // 
-            // tsBtnGenerate
-            // 
-            this.tsBtnGenerate.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Text;
-            this.tsBtnGenerate.Image = ((System.Drawing.Image)(resources.GetObject("tsBtnGenerate.Image")));
-            this.tsBtnGenerate.ImageTransparentColor = System.Drawing.Color.Magenta;
-            this.tsBtnGenerate.Name = "tsBtnGenerate";
-            this.tsBtnGenerate.Size = new System.Drawing.Size(65, 22);
-            this.tsBtnGenerate.Text = "Generate";
-            this.tsBtnGenerate.Click += new System.EventHandler(this.tsBtnGenerate_Click);
             // 
             // Form2
             // 

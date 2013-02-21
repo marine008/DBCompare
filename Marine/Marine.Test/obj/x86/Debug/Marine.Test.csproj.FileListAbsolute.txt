@@ -6,3 +6,11 @@ E:\zhd\MyProject\Marine\Marine.Test\obj\x86\Debug\Marine.Test.exe
 E:\zhd\MyProject\Marine\Marine.Test\obj\x86\Debug\Marine.Test.pdb
 E:\zhd\MyProject\Marine\Marine.Test\bin\Debug\Marine.Database.dll
 E:\zhd\MyProject\Marine\Marine.Test\bin\Debug\Marine.Database.pdb
+C:\Users\zhd\Documents\GitHub\DBCompare\Marine\Marine.Test\bin\Debug\Marine.Test.exe.config
+C:\Users\zhd\Documents\GitHub\DBCompare\Marine\Marine.Test\bin\Debug\Marine.Test.exe
+C:\Users\zhd\Documents\GitHub\DBCompare\Marine\Marine.Test\bin\Debug\Marine.Test.pdb
+C:\Users\zhd\Documents\GitHub\DBCompare\Marine\Marine.Test\bin\Debug\Marine.Database.dll
+C:\Users\zhd\Documents\GitHub\DBCompare\Marine\Marine.Test\bin\Debug\Marine.Database.pdb
+C:\Users\zhd\Documents\GitHub\DBCompare\Marine\Marine.Test\obj\x86\Debug\ResolveAssemblyReference.cache
+C:\Users\zhd\Documents\GitHub\DBCompare\Marine\Marine.Test\obj\x86\Debug\Marine.Test.exe
+C:\Users\zhd\Documents\GitHub\DBCompare\Marine\Marine.Test\obj\x86\Debug\Marine.Test.pdb

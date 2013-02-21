@@ -3,3 +3,8 @@ E:\zhd\MyProject\Marine\Marine.Database\bin\Debug\Marine.Database.pdb
 E:\zhd\MyProject\Marine\Marine.Database\obj\Debug\ResolveAssemblyReference.cache
 E:\zhd\MyProject\Marine\Marine.Database\obj\Debug\Marine.Database.dll
 E:\zhd\MyProject\Marine\Marine.Database\obj\Debug\Marine.Database.pdb
+C:\Users\zhd\Documents\GitHub\DBCompare\Marine\Marine.Database\obj\Debug\ResolveAssemblyReference.cache
+C:\Users\zhd\Documents\GitHub\DBCompare\Marine\Marine.Database\obj\Debug\Marine.Database.dll
+C:\Users\zhd\Documents\GitHub\DBCompare\Marine\Marine.Database\obj\Debug\Marine.Database.pdb
+C:\Users\zhd\Documents\GitHub\DBCompare\Marine\Marine.Database\bin\Debug\Marine.Database.dll
+C:\Users\zhd\Documents\GitHub\DBCompare\Marine\Marine.Database\bin\Debug\Marine.Database.pdb
