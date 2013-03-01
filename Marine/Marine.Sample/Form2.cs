@@ -5,28 +5,46 @@ using System.Data;
 using System.Drawing;
 using System.Linq;
 using System.Text;
+using System.Xml;
 using System.Windows.Forms;
 
 namespace Marine.Sample
 {
     public partial class Form2 : Form
     {
+        private Dictionary<string, Database.Entity.OracleEntity> _dbObjs = null;
+
         public Form2()
         {
             InitializeComponent();
+
+            _dbObjs = new Dictionary<string, Database.Entity.OracleEntity>();
         }
 
         private void tsBtnAdd_Click(object sender, EventArgs e)
         {
-            AddForm addForm = new AddForm();
-            if (addForm.ShowDialog() == System.Windows.Forms.DialogResult.OK)
+            if (this.MdiChildren.Length < 2)
             {
-                CompareForm compareForm = new CompareForm(addForm.DBEntity);
-                compareForm.Text = addForm.DBType + ":" + addForm.DBUserName + "@" + addForm.DBInstance;
+                AddForm addForm = new AddForm();
+                if (addForm.ShowDialog() == System.Windows.Forms.DialogResult.OK)
+                {
+                    string formText = addForm.DBType + ":" + addForm.DBUserName + "@" + addForm.DBInstance;
 
-                compareForm.MdiParent = this;
-                compareForm.Show();
+                    _dbObjs.Add(formText, addForm.DBEntity);
+                    CreateCompareForm(addForm.DBEntity, formText);
+                }
             }
+            else
+                MessageBox.Show("窗体数量最多2个！");
+        }
+
+        private void CreateCompareForm(Database.Entity.OracleEntity dbEntity, string formText)
+        {
+            CompareForm compareForm = new CompareForm(dbEntity);
+            compareForm.Text = formText;
+
+            compareForm.MdiParent = this;
+            compareForm.Show();
         }
 
         private void tsBtnArrangeIcons_Click(object sender, EventArgs e)
@@ -90,7 +108,71 @@ namespace Marine.Sample
         {
             if (this.ActiveMdiChild != null && this.ActiveMdiChild is CompareForm)
             {
-                
+
+            }
+        }
+
+        private void tsBtnExport_Click(object sender, EventArgs e)
+        {
+            SaveFileDialog saveFileDialog = new SaveFileDialog();
+            saveFileDialog.Filter = "xml|*.xml";
+            if (saveFileDialog.ShowDialog() == System.Windows.Forms.DialogResult.OK)
+            {
+
+                Database.XmlOperation xOperation = new Database.XmlOperation();
+                xOperation.Create("DatabaseConnection");
+
+                foreach (string key in this._dbObjs.Keys)
+                {
+                    Database.Entity.OracleEntity oEntity = this._dbObjs[key];
+
+                    XmlNode dbNode = xOperation.CreateXmlNode("Database", "", null);
+                    XmlNode connectionNode = xOperation.CreateXmlNode("Connection", oEntity.DBExcuter.DbConnectionString, null);
+                    XmlNode providerNode = xOperation.CreateXmlNode("Provider", oEntity.DBExcuter.DbProviderName, null);
+                    XmlNode dbTypeNode = xOperation.CreateXmlNode("Type", typeof(Database.Entity.OracleEntity).ToString(), null);
+                    XmlNode assemblyNode = xOperation.CreateXmlNode("Assembly", typeof(Database.Entity.OracleEntity).Assembly.Location, null);
+                    XmlNode dbInfo = xOperation.CreateXmlNode("Info", key, null);
+
+                    dbNode.AppendChild(connectionNode);
+                    dbNode.AppendChild(providerNode);
+                    dbNode.AppendChild(dbTypeNode);
+                    dbNode.AppendChild(assemblyNode);
+                    dbNode.AppendChild(dbInfo);
+
+                    xOperation.RootNode.AppendChild(dbNode);
+                }
+
+                xOperation.Save(saveFileDialog.FileName);
+            }
+        }
+
+        private void tsBtnImport_Click(object sender, EventArgs e)
+        {
+            OpenFileDialog openFileDialog = new OpenFileDialog();
+            openFileDialog.Filter = "xml文件|*.xml";
+            if (openFileDialog.ShowDialog() == System.Windows.Forms.DialogResult.OK)
+            {
+                Database.XmlOperation xmlOperation = new Database.XmlOperation();
+                xmlOperation.Load(openFileDialog.FileName);
+                XmlNodeList nodes = xmlOperation.GetNodes("Database");
+                if (nodes != null)
+                {
+                    foreach (XmlNode node in nodes)
+                    {
+                        Dictionary<string, string> innerValues = xmlOperation.GetTagElementInnerValues(node);
+                        Database.DatabaseObj dbObj = new Database.DatabaseObj(innerValues["Provider"], innerValues["Connection"]);
+
+                        System.Reflection.Assembly assembly = System.Reflection.Assembly.LoadFile(innerValues["Assembly"]);
+                        Type type = assembly.GetType(innerValues["Type"]);
+                        object obj = Activator.CreateInstance(type, new object[] { dbObj });
+
+                        Database.Entity.OracleEntity oracleEntity = null;
+                        if (obj is Database.Entity.OracleEntity)
+                            oracleEntity = obj as Database.Entity.OracleEntity;
+
+                        CreateCompareForm(oracleEntity, innerValues["Info"]);
+                    }
+                }
             }
         }
     }

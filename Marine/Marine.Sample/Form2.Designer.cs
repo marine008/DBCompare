@@ -37,6 +37,8 @@
             this.tsBtnCascade = new System.Windows.Forms.ToolStripButton();
             this.tsBtnTileHorizontal = new System.Windows.Forms.ToolStripButton();
             this.tsBtnTileVertical = new System.Windows.Forms.ToolStripButton();
+            this.tsBtnExport = new System.Windows.Forms.ToolStripButton();
+            this.tsBtnImport = new System.Windows.Forms.ToolStripButton();
             this.toolStrip1.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -49,7 +51,9 @@
             this.tsBtnArrangeIcons,
             this.tsBtnCascade,
             this.tsBtnTileHorizontal,
-            this.tsBtnTileVertical});
+            this.tsBtnTileVertical,
+            this.tsBtnExport,
+            this.tsBtnImport});
             this.toolStrip1.Location = new System.Drawing.Point(0, 0);
             this.toolStrip1.Name = "toolStrip1";
             this.toolStrip1.Size = new System.Drawing.Size(675, 25);
@@ -126,6 +130,26 @@
             this.tsBtnTileVertical.Text = "TileVertical";
             this.tsBtnTileVertical.Click += new System.EventHandler(this.tsBtnTileVertical_Click);
             // 
+            // tsBtnExport
+            // 
+            this.tsBtnExport.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Text;
+            this.tsBtnExport.Image = ((System.Drawing.Image)(resources.GetObject("tsBtnExport.Image")));
+            this.tsBtnExport.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.tsBtnExport.Name = "tsBtnExport";
+            this.tsBtnExport.Size = new System.Drawing.Size(50, 22);
+            this.tsBtnExport.Text = "Export";
+            this.tsBtnExport.Click += new System.EventHandler(this.tsBtnExport_Click);
+            // 
+            // tsBtnImport
+            // 
+            this.tsBtnImport.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Text;
+            this.tsBtnImport.Image = ((System.Drawing.Image)(resources.GetObject("tsBtnImport.Image")));
+            this.tsBtnImport.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.tsBtnImport.Name = "tsBtnImport";
+            this.tsBtnImport.Size = new System.Drawing.Size(52, 22);
+            this.tsBtnImport.Text = "Import";
+            this.tsBtnImport.Click += new System.EventHandler(this.tsBtnImport_Click);
+            // 
             // Form2
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
@@ -152,5 +176,7 @@
         private System.Windows.Forms.ToolStripButton tsBtnTileHorizontal;
         private System.Windows.Forms.ToolStripButton tsBtnTileVertical;
         private System.Windows.Forms.ToolStripButton tsBtnGenerate;
+        private System.Windows.Forms.ToolStripButton tsBtnExport;
+        private System.Windows.Forms.ToolStripButton tsBtnImport;
     }
 }

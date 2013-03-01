@@ -48,6 +48,7 @@
     <Compile Include="InfoObject.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="TextObj.cs" />
+    <Compile Include="XmlOperation.cs" />
   </ItemGroup>
   <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

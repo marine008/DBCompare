@@ -20,7 +20,8 @@ namespace Marine.Sample
         private List<string> _userPrivs;
         private List<string> _userRoles;
         private List<string> _dbSpaces;
-        private Dictionary<string, List<Database.Entity.UserObject>> _userObjects;
+        private List<Database.Entity.UserObject> _userObjects;
+        //private Dictionary<string, List<Database.Entity.UserObject>> _userObjects;
 
         public List<string> UserPrivs
         {
@@ -34,10 +35,14 @@ namespace Marine.Sample
         {
             get { return _dbSpaces; }
         }
-        public Dictionary<string, List<Database.Entity.UserObject>> UserObjects
+        public List<Database.Entity.UserObject> UserObjects
         {
             get { return _userObjects; }
         }
+        //public Dictionary<string, List<Database.Entity.UserObject>> UserObjects
+        //{
+        //    get { return _userObjects; }
+        //}
 
         public CompareForm(Database.Entity.OracleEntity oracleEntity)
         {
@@ -70,6 +75,23 @@ namespace Marine.Sample
             foreach (string value in values)
             {
                 listViewControl.Items.Add(value);
+            }
+
+            TabPage tabPage = new TabPage(tabName);
+            tabPage.Controls.Add(listViewControl);
+
+            targetTabControl.TabPages.Add(tabPage);
+        }
+
+        private void FilingTabPage(List<Database.Entity.UserObject> values, string tabName, TabControl targetTabControl)
+        {
+            ListView listViewControl = new ListView();
+            listViewControl.View = View.Details;
+            listViewControl.Dock = DockStyle.Fill;
+            listViewControl.Columns.Add("ObjectName");
+            foreach (Database.Entity.UserObject value in values)
+            {
+                listViewControl.Items.Add(value.ObjName);
             }
 
             TabPage tabPage = new TabPage(tabName);
@@ -130,7 +152,7 @@ namespace Marine.Sample
             compareResult.Add("PRIVS", CompareList(this._userPrivs, compareForm._userPrivs, compareForm.Text));
             compareResult.Add("ROLES", CompareList(this._userRoles, compareForm._userRoles, compareForm.Text));
             compareResult.Add("SPACES", CompareList(this._dbSpaces, compareForm._dbSpaces, compareForm.Text));
-            //compareResult.Add("USEROBJECTS", CompareList(this._userPrivs, compareForm._userPrivs,compareForm.Text);
+            compareResult.Add("USEROBJECTS", CompareUserObjs(this._userObjects, compareForm._userObjects, compareForm.Text));
 
             return compareResult;
         }
@@ -146,6 +168,52 @@ namespace Marine.Sample
             compareList.Add(compareFormText, targetOver);
 
             return compareList;
+        }
+
+        private Dictionary<string, List<string>> CompareUserObjs(List<Database.Entity.UserObject> baseList, List<Database.Entity.UserObject> targetList, string compareFormText)
+        {
+            Dictionary<string, List<string>> compareList = new Dictionary<string, List<string>>();
+
+            //List<Database.Entity.UserObject> baseOver = baseList.Except(targetList).ToList();
+            //List<Database.Entity.UserObject> targetOver = targetList.Except(baseList).ToList();
+
+            List<string> baseOverList = new List<string>();
+            List<string> targetOverList = new List<string>();
+            foreach (Database.Entity.UserObject userObj in baseList)
+            {
+                baseOverList.Add(userObj.ObjName);
+            }
+            foreach (Database.Entity.UserObject userObj in targetList)
+            {
+                targetOverList.Add(userObj.ObjName);
+            }
+
+            List<string> baseOver = baseOverList.Except(targetOverList).ToList();
+            List<string> targetOver = targetOverList.Except(baseOverList).ToList();
+
+            compareList.Add(this.Text, baseOver);
+            compareList.Add(compareFormText, targetOver);
+
+            return compareList;
+        }
+
+        private void btnSearch_Click(object sender, EventArgs e)
+        {
+            TabPage tabPage = this.tabDBInfo.SelectedTab;
+            Control pageControl = tabPage.Controls[0];
+            if (pageControl is ListView)
+            {
+                ListView listView = pageControl as ListView;
+
+                ListViewItem item = listView.FindItemWithText(this.txtSearch.Text.Trim(), false, 0, false);
+                if (item != null)
+                {
+                    listView.SelectedItems.Clear();
+                    listView.EnsureVisible(item.Index + 1);
+                    listView.Items[item.Index].Selected = true;
+                    listView.Focus();
+                }
+            }
         }
     }
 }

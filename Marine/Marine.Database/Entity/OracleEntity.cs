@@ -9,6 +9,10 @@ namespace Marine.Database.Entity
     public class OracleEntity
     {
         private DatabaseObj _dbExcuter = null;
+        public DatabaseObj DBExcuter
+        {
+            get { return _dbExcuter; }
+        }
 
         public OracleEntity(DatabaseObj dbExcuter)
         {
@@ -59,9 +63,39 @@ namespace Marine.Database.Entity
             return columnList;
         }
 
-        public Dictionary<string, List<UserObject>> GetCurUserObject()
+        //public Dictionary<string, List<UserObject>> GetCurUserObject()
+        //{
+        //    Dictionary<string, List<UserObject>> userObjDic = new Dictionary<string, List<UserObject>>();
+
+        //    DataTable userObjDT = new DataTable();
+        //    string cmd = "select * from user_objects order by object_type";
+        //    int excuteResult = _dbExcuter.Fill(cmd, ref userObjDT);
+        //    if (excuteResult > 0)
+        //    {
+        //        foreach (DataRow dtRow in userObjDT.Rows)
+        //        {
+        //            string objType = dtRow["object_type"].ToString();
+        //            if (!userObjDic.ContainsKey(objType))
+        //            {
+        //                userObjDic.Add(objType, new List<UserObject>());
+        //            }
+
+        //            UserObject userObj = new UserObject();
+        //            userObj.ObjName = dtRow["object_name"].ToString();
+        //            userObj.ObjType = objType;
+        //            userObj.CreateTime = Convert.ToDateTime(dtRow["created"].ToString());
+        //            userObj.ChangeTime = Convert.ToDateTime(dtRow["last_ddl_time"].ToString());
+
+        //            userObjDic[objType].Add(userObj);
+        //        }
+        //    }
+
+        //    return userObjDic;
+        //}
+
+        public List<UserObject> GetCurUserObject()
         {
-            Dictionary<string, List<UserObject>> userObjDic = new Dictionary<string, List<UserObject>>();
+            List<UserObject> userObjList = new List<UserObject>();
 
             DataTable userObjDT = new DataTable();
             string cmd = "select * from user_objects order by object_type";
@@ -71,22 +105,20 @@ namespace Marine.Database.Entity
                 foreach (DataRow dtRow in userObjDT.Rows)
                 {
                     string objType = dtRow["object_type"].ToString();
-                    if (!userObjDic.ContainsKey(objType))
-                    {
-                        userObjDic.Add(objType, new List<UserObject>());
-                    }
-
                     UserObject userObj = new UserObject();
                     userObj.ObjName = dtRow["object_name"].ToString();
                     userObj.ObjType = objType;
                     userObj.CreateTime = Convert.ToDateTime(dtRow["created"].ToString());
                     userObj.ChangeTime = Convert.ToDateTime(dtRow["last_ddl_time"].ToString());
 
-                    userObjDic[objType].Add(userObj);
+                    if (!userObjList.Contains(userObj))
+                    {
+                        userObjList.Add(userObj);
+                    }
                 }
             }
 
-            return userObjDic;
+            return userObjList;
         }
 
         public string GetCurUserName()

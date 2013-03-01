@@ -17,7 +17,6 @@ C:\Users\zhd\Documents\GitHub\DBCompare\Marine\Marine.Sample\obj\x86\Debug\Marin
 C:\Users\zhd\Documents\GitHub\DBCompare\Marine\Marine.Sample\obj\x86\Debug\ResolveAssemblyReference.cache
 C:\Users\zhd\Documents\GitHub\DBCompare\Marine\Marine.Sample\obj\x86\Debug\Marine.Sample.AddForm.resources
 C:\Users\zhd\Documents\GitHub\DBCompare\Marine\Marine.Sample\obj\x86\Debug\Marine.Sample.CompareForm.resources
-C:\Users\zhd\Documents\GitHub\DBCompare\Marine\Marine.Sample\obj\x86\Debug\Marine.Sample.Form1.resources
 C:\Users\zhd\Documents\GitHub\DBCompare\Marine\Marine.Sample\obj\x86\Debug\Marine.Sample.Form2.resources
 C:\Users\zhd\Documents\GitHub\DBCompare\Marine\Marine.Sample\obj\x86\Debug\Marine.Sample.Properties.Resources.resources
 C:\Users\zhd\Documents\GitHub\DBCompare\Marine\Marine.Sample\obj\x86\Debug\GenerateResource.read.1.tlog
